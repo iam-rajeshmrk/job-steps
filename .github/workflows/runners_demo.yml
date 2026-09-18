@@ -1,4 +1,4 @@
-name: Display Directory
+name: Different Runners Demo
 on: [push]
 jobs:
     show-directory:
