@@ -1,0 +1,11 @@
+name: Display Directory
+on: [push]
+jobs:
+    show-directory:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: List files in workspace
+              run: ls -la {{ github.workspace }}
