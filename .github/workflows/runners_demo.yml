@@ -1,0 +1,43 @@
+name: Display Directory
+on: [push]
+jobs:
+    show-directory:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: List files in workspace
+              run: ls -la "${{ github.workspace }}"
+
+            - name: Bash example
+              shell: bash
+              run: |
+                  echo "Running Bash on $RUNNER_OS"
+                  pwd
+                  ls -la
+
+            - name: PowerShell example
+              shell: pwsh
+              run: |
+                  Write-Host "Running PowerShell on $env:RUNNER_OS"
+                  Get-Location
+                  Get-ChildItem -Force
+
+    show-directory-windows:
+        runs-on: windows-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: List files in workspace
+              shell: pwsh
+              run: Get-ChildItem -Path $env:GITHUB_WORKSPACE -Force
+
+            - name: PowerShell example
+              shell: pwsh
+              run: |
+                  Write-Host "Running PowerShell on $env:RUNNER_OS"
+                  Get-Location
+                  Get-ChildItem -Force
+                
