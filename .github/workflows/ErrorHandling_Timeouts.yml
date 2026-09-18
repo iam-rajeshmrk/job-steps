@@ -1,0 +1,42 @@
+name: Error Handling and Timeouts
+
+on: [push]
+
+jobs:
+  timeout-demo:
+    name: Timeout Example
+    runs-on: ubuntu-latest
+    timeout-minutes: 10  # Job will fail after 2 minutes
+    
+    steps:
+      - name: Long running process
+        run: |
+          echo "This job will timeout in 2 minutes"
+          sleep 120  # This will cause timeout
+          echo "This won't execute"
+
+  error-handling:
+    name: Error Handling Examples
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: This step will fail
+        run: |
+          echo "About to run a command that fails"
+          exit 1  # Non-zero exit code fails the step
+        # continue-on-error: true  # Continue even if this fails
+      
+      - name: This runs even if previous failed
+        run: echo "Continuing despite previous failure"
+      
+      - name: Conditional execution on failure
+        if: failure()
+        run: echo "This runs because previous steps failed"
+      
+      - name: Conditional execution on success
+        if: success()
+        run: echo "This runs because all previous steps succeeded"
+      
+      - name: Always run cleanup
+        if: always()
+        run: echo "This always runs, regardless of success/failure"
