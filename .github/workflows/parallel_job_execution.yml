@@ -7,21 +7,21 @@ jobs:
         runs-on: ubuntu-latest
         name:  Run unit tests
         steps:
-           run:  echo "Running unit tests"
-           run: sleep 10
-           run: echo "Unit tests completed"
+           - run: echo "Running unit tests"
+           - run: sleep 10
+           - run: echo "Unit tests completed"
 
     integration-tests:
         runs-on: ubuntu-latest
         name:  Run integration tests
         steps:
-           run:  echo "Running integration tests"
-           run: sleep 10
-           run: echo "Integration tests completed"       
+           - run: echo "Running integration tests"
+           - run: sleep 10
+           - run: echo "Integration tests completed"
     linting:
         runs-on: ubuntu-latest
         name:  Run linting
         steps:
-           run:  echo "Running linting"
-           run: sleep 10
-           run: echo "Linting completed
+           - run: echo "Running linting"
+           - run: sleep 10
+           - run: echo "Linting completed"
